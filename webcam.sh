@@ -80,13 +80,13 @@ PAR="fontfile=$FNT:fontcolor=$FCL:fontsize=$FSZ:x=$XTX:y=$YXT:alpha=$ALP:$BOX"
 
 
 # Take a photo at full default size
-ffmpeg -f video4linux2 -i /dev/video0 -vframes:v 1 -y $CAP
+ffmpeg -v quiet -f video4linux2 -i /dev/video0 -vframes:v 1 -y $CAP
 
 # Apply text
-ffmpeg -i $CAP -vf "drawtext=expansion=none:$PARtext='$STR'" $OUT
+ffmpeg -v quiet -i $CAP -y -vf "drawtext=expansion=none:$PARtext='$STR'" $OUT
 
 # Create thumbnail
-ffmpeg -i $OUT -vf scale=$TNX:-1 $THB
+ffmpeg -v quiet -i $OUT -y -vf scale=$TNX:-1 $THB
 
 # Done
 exit
