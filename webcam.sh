@@ -13,9 +13,23 @@
 # Date string
 PUB=`date "+%a, %d %b %Y %H\:%M\:%S"`
 
-# Titles and other stuff
-STR="Rustic Cyberpunk | $PUB | kpz62k4pnyh5g5t2efecabkywt2aiwcnqylthqyywilqgxeiipen5xid.onion"
+# Weather report file
+WEA="/tmp/weather.report"
 
+# If weather report exists, add it
+if [ -f $WEA ]; then
+	RPT="$(head -n 1 $WEA) | "
+else
+	RPT=""
+fi
+
+# Titles and other stuff
+STR="Rustic Cyberpunk | $PUB | ${RPT}kpz62k4pnyh5g5t2efecabkywt2aiwcnqylthqyywilqgxeiipen5xid.onion"
+
+# Weather can be generated from some place like wttr.in
+# E.G. On OpenBSD :
+# ftp -o /tmp/weather.report https://wttr.in/?format=3
+# Please don't abuse the wttr service. Limit updates to maybe once an hour or longer
 
 #### Capture settings:
 
