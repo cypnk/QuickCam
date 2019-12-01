@@ -13,12 +13,13 @@
 # Date string
 PUB=`date "+%a, %d %b %Y %H\:%M\:%S"`
 
-# Weather report file
+# Optional weather report file
 WEA="/tmp/weather.report"
 
 # If weather report exists, add it
 if [ -f $WEA ]; then
-	RPT="$(head -n 1 $WEA) | "
+	# Clean text (ffmpeg doesn't handle things like emoji well) and trim spaces
+	RPT="$(head -n 1 $WEA | tr -cd '\000-\177' | awk '{$1=$1};1') | "
 else
 	RPT=""
 fi
