@@ -13,11 +13,13 @@ OUT=/tmp/weather.report
 TMP=`mktemp -t weather.XXXXXXX` || exit 1
 
 # This syntax is for OpenBSD
-ftp -o $TMP $URL || rm $TMP && exit
+ftp -o $TMP $URL || rm $TMP
 # On linux:
-#  wget -O $TMP $URL || rm $TMP && exit
+#  wget -O $TMP $URL || rm $TMP
 
-mv $TMP $OUT
+if [ -f $TMP ]; then
+	mv $TMP $OUT
+fi
 
-exit
+exit 0
 
