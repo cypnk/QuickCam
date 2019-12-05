@@ -18,8 +18,8 @@ ftp -o $TMP $URL || rm $TMP
 #  wget -O $TMP $URL || rm $TMP
 
 if [ -f $TMP ]; then
-	# Check for gateway timeout error
-	if grep -q "504" $TMP; then
+	# Check for gateway timeout and other errors
+	if grep -q -i "504\|unknown\|error\|found" $TMP; then
 		rm $TMP && exit
 	fi
 	mv $TMP $OUT
