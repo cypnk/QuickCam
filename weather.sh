@@ -26,7 +26,13 @@ if [ -f $TMP ]; then
 	if grep -q -i "504\|format\|location\|error\|found" $TMP; then
 		rm $TMP && exit
 	fi
-	mv $TMP $OUT
+	
+	# If downloaded report isn't empty
+	if [ -s $TMP ]; then
+		mv $TMP $OUT
+	else
+		rm $TMP
+	fi
 fi
 
 exit 0
