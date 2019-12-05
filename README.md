@@ -1,5 +1,5 @@
 # QuickCam
-Quick snippets to capture a webcam image
+Quick snippets to capture a webcam image. [Live example](https://sh2.us/cam/).
 
 These are standalone shell scripts which can be added to cron:
 * **webcam.sh** Capture an image using ffmpeg and your webcam. Ideally set to run every 3-10 minutes. Can also display the weather, if given.
